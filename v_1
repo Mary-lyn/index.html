@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security Check</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: white;
+    text-align: center;
+    padding-top: 60px;
+}
+
+.card {
+    background-color: #1e1e1e;
+    margin: auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255,0,0,0.5);
+}
+
+h1 {
+    color: #ff3b3b;
+}
+
+.progress {
+    background-color: #333;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.progress-bar {
+    height: 20px;
+    width: 0%;
+    background-color: red;
+}
+
+button {
+    padding: 15px;
+    width: 100%;
+    font-size: 18px;
+    background-color: #ff3b3b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>⚠ Sicherheitsprüfung läuft</h1>
+    <p>Überprüfung Ihres Geräts auf Bedrohungen...</p>
+
+    <div class="progress">
+        <div class="progress-bar" id="bar"></div>
+    </div>
+
+    <p id="status">Scanne Systemdateien...</p>
+
+    <button onclick="redirect()">Bedrohungen entfernen (Download)</button>
+</div>
+
+<script>
+let progress = 0;
+let bar = document.getElementById("bar");
+let status = document.getElementById("status");
+
+let fakeScan = setInterval(function() {
+    progress += 5;
+    bar.style.width = progress + "%";
+
+    if(progress == 30) status.innerText = "Überprüfe Browser...";
+    if(progress == 60) status.innerText = "Analysiere Netzwerk...";
+    if(progress == 85) status.innerText = "5 kritische Bedrohungen gefunden!";
+
+    if(progress >= 100) {
+        clearInterval(fakeScan);
+        status.innerText = "5 KRITISCHE BEDROHUNGEN GEFUNDEN!";
+        status.style.color = "red";
+    }
+}, 300);
+
+function redirect() {
+    window.location.href = "bingo.html";
+}
+</script>
+
+</body>
+</html>
